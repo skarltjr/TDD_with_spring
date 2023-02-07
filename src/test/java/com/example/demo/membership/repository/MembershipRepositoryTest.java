@@ -102,7 +102,17 @@ public class MembershipRepositoryTest {
         assertThat(membership.get().getPoint()).isEqualTo(savedMembership.getPoint());
     }
 
+    /**
+     * 멤버십 삭제
+     */
+    @Test
+    @DisplayName("멤버십 삭제")
+    void deleteMembershipWithMembershipId() {
+        Membership savedMembership = membershipRepository.save(createTempMemberShip(null, userId, membershipType, point));
+        membershipRepository.deleteById(savedMembership.getId());
 
+        assertThat(membershipRepository.findById(savedMembership.getId())).isEqualTo(Optional.empty());
+    }
 
     private Membership createTempMemberShip(Long membershipId,String userId, MembershipType membershipType, int point) {
         Membership membership = Membership.builder()
@@ -113,4 +123,6 @@ public class MembershipRepositoryTest {
                 .build();
         return membership;
     }
+
+
 }
