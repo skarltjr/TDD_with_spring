@@ -1,6 +1,6 @@
 package com.example.demo.membership.service;
 
-import com.example.demo.membership.exception.CannotFindWithMembershipIdException;
+import com.example.demo.membership.exception.CannotFindWithMembershipException;
 import com.example.demo.membership.exception.CannotRemoveOthersMembershipException;
 import com.example.demo.membership.model.Membership;
 import com.example.demo.membership.model.MembershipType;
@@ -30,7 +30,7 @@ public class MembershipRemoveServiceTest {
     void failToRemoveNonExistMembership() {
         BDDMockito.given(membershipRepository.findById(membershipId)).willReturn(Optional.empty());
 
-        Assertions.assertThrows(CannotFindWithMembershipIdException.class, () -> {
+        Assertions.assertThrows(CannotFindWithMembershipException.class, () -> {
             service.deleteMembershipById(membershipId, userId);
         });
     }

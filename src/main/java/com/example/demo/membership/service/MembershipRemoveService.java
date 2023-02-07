@@ -1,6 +1,6 @@
 package com.example.demo.membership.service;
 
-import com.example.demo.membership.exception.CannotFindWithMembershipIdException;
+import com.example.demo.membership.exception.CannotFindWithMembershipException;
 import com.example.demo.membership.exception.CannotRemoveOthersMembershipException;
 import com.example.demo.membership.model.Membership;
 import com.example.demo.membership.repository.MembershipRepository;
@@ -15,7 +15,7 @@ public class MembershipRemoveService {
     private final MembershipRepository membershipRepository;
 
     public void deleteMembershipById(Long membershipId,String userId) {
-        Membership membership = membershipRepository.findById(membershipId).orElseThrow(() -> new CannotFindWithMembershipIdException());
+        Membership membership = membershipRepository.findById(membershipId).orElseThrow(() -> new CannotFindWithMembershipException());
         checkIfIsMine(membership, userId);
         membershipRepository.delete(membership);
     }

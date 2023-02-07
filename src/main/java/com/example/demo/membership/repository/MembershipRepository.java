@@ -5,6 +5,7 @@ import com.example.demo.membership.model.MembershipType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface MembershipRepository extends JpaRepository<Membership, Long> {
@@ -12,4 +13,5 @@ public interface MembershipRepository extends JpaRepository<Membership, Long> {
 
     List<Membership> findByUserId(String userId);
 
+    Optional<Membership> findByUserIdAndMembershipId(String userId, Long membershipId);
 }

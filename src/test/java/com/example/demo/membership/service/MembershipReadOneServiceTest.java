@@ -1,7 +1,7 @@
 package com.example.demo.membership.service;
 
 import com.example.demo.membership.exception.AuthFailWithReadMembershipException;
-import com.example.demo.membership.exception.CannotFindWithMembershipIdException;
+import com.example.demo.membership.exception.CannotFindWithMembershipException;
 import com.example.demo.membership.model.Membership;
 import com.example.demo.membership.model.MembershipType;
 import com.example.demo.membership.repository.MembershipRepository;
@@ -44,7 +44,7 @@ public class MembershipReadOneServiceTest {
         BDDMockito.given(membershipRepository.findById(membershipId)).willReturn(Optional.empty());
 
 
-        Assertions.assertThrows(CannotFindWithMembershipIdException.class, () -> {
+        Assertions.assertThrows(CannotFindWithMembershipException.class, () -> {
             service.getMembership(userId,membershipId);
         });
     }

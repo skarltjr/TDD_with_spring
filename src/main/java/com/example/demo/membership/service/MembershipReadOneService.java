@@ -1,7 +1,7 @@
 package com.example.demo.membership.service;
 
 import com.example.demo.membership.exception.AuthFailWithReadMembershipException;
-import com.example.demo.membership.exception.CannotFindWithMembershipIdException;
+import com.example.demo.membership.exception.CannotFindWithMembershipException;
 import com.example.demo.membership.model.Membership;
 import com.example.demo.membership.repository.MembershipRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class MembershipReadOneService {
 
 
     public Membership getMembership(String userId, Long membershipId) {
-        Membership membership = membershipRepository.findById(membershipId).orElseThrow(() -> new CannotFindWithMembershipIdException());
+        Membership membership = membershipRepository.findById(membershipId).orElseThrow(() -> new CannotFindWithMembershipException());
         checkIfOwner(membership, userId);
         return membership;
     }
