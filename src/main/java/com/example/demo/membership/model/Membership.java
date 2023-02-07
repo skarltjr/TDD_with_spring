@@ -38,4 +38,8 @@ public class Membership {
     @UpdateTimestamp
     @Column(length = 20)
     private LocalDateTime updatedAt;
+
+    public void accumulate(int pointToAdd) {
+        point += pointToAdd;
+    }
 }
