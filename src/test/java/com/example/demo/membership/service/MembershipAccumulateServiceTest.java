@@ -39,7 +39,7 @@ class MembershipAccumulateServiceTest {
     @DisplayName("멤버십 적립")
     void accumulate() {
         Membership originMembership = createTempMemberShip(membershipId, userId, membershipType, point);
-        BDDMockito.given(membershipRepository.findByUserIdAndMembershipId(userId,membershipId)).willReturn(Optional.of(originMembership));
+        BDDMockito.given(membershipRepository.findByUserIdAndId(userId,membershipId)).willReturn(Optional.of(originMembership));
 
         int value = price * 1 / 100;
         BDDMockito.given(accumulateService.calculateAmount(price)).willReturn(value);

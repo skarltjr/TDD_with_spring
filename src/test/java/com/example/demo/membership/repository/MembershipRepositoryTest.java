@@ -2,6 +2,7 @@ package com.example.demo.membership.repository;
 
 import com.example.demo.membership.model.Membership;
 import com.example.demo.membership.model.MembershipType;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,10 @@ public class MembershipRepositoryTest {
     // -------
 
 
+    @BeforeEach
+    void setUp() {
+        membershipRepository.deleteAll();
+    }
     @Test
     void membershipRepoIsNotNull() {
         assertThat(membershipRepository).isNotNull();

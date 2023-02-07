@@ -15,7 +15,7 @@ public class MembershipAccumulateService {
     private final AccumulateService accumulateService;
 
     public void accumulate(String userId, Long membershipId, int price) {
-        Membership membership = membershipRepository.findByUserIdAndMembershipId(userId, membershipId).orElseThrow(() -> new CannotFindWithMembershipException());
+        Membership membership = membershipRepository.findByUserIdAndId(userId, membershipId).orElseThrow(() -> new CannotFindWithMembershipException());
         int pointToAdd = accumulateService.calculateAmount(price);
         membership.accumulate(pointToAdd);
     }
